@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centered Navbar with Logo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .navbar {
+        background: crimson;
+        padding: 15px;
+      }
+      .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000; 
+      background-color: rgb(159, 42, 42); 
+      padding: 10px 20px;
+      box-shadow: 0 5px 8px rgba(107, 103, 103, 0.1); 
+      }
+      .navdiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position: relative;
+      }
+      .logo a {
+        font-size: 25px;
+        font-weight: 600px;
+        color: white;
+      }
+      #nav-links {
+        display: flex;
+        gap: 25px;
+      }
+      #nav-links li {
+        text-align: center;
+        list-style: none;
+        padding: 15px 10px;
+      }
+
+      #nav-links li a {
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      #nav-links li a:hover {
+        border-bottom: 2px solid white;
+      }
+
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+      li {
+        list-style: none;
+      }
+      li a {
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .burger {
+        display: none;
+        font-size: 25px;
+        color: white;
+        cursor: pointer;
+      }
+
+
+      @media (max-width: 768px) {
+        #nav-links {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          background: crimson;
+          position: absolute;
+          top: 60px;
+          right: 20px;
+          width: 150px;
+          border-radius: 5px;
+          padding: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          z-index: 100;
+        }
+
+        #nav-links.active {
+          display: flex;
+        }
+        .burger {
+          display: block;
+        }
+      }
+      .container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+      }
+      .my_cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .container h2 {
+        position: absolute;
+        left: 10%;
+        top: 65%;
+        color: antiquewhite;
+        font-size: 40px;
+        text-shadow: 2px 2px 8px black;
+      }
+
+      .grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+      }
+
+      .item {
+        background: white;
+        padding: 10px;
+        border-radius: 8px;
+        width: 280px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .item img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      main h2 {
+        text-align: center;
+        margin: 30px 0;
+        font-size: 28px;
+      }
+      .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      box-shadow: 0 0 15px white;
+      border-radius: 8px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+      .item img {
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .item img:hover {
+        transform: scale(1.05);
+      }
+
+   body {
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      gap: 30px;
+    }
+    .gallery-container {
+      position: relative;
+      width: 400px;
+    }
+    .gallery-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .arrow {
+      font-size: 40px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: crimson;
+      user-select: none;
+    }
+    .arrow.left {
+      left: -30px;
+    }
+    .arrow.right {
+      right: -30px;
+    }
+    .info-box {
+      max-width: 400px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .info-box h2 {
+      margin-bottom: 10px;
+      color: crimson;
+    }
+    .info-box p {
+      margin: 8px 0;
+    }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+      .arrow.left {
+        left: 5px;
+      }
+      .arrow.right {
+        right: 5px;
+      }
+    }
+    .scroll-target {
+      scroll-margin-top: 75px;
+    }
+    footer {
+  background-color: rgb(159, 42, 42);
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: 40px;
+  box-shadow: 0 5px 8px rgba(107, 103, 103, 0.1);
+}
+    </style>
+  </head>
+  <body>
+   
+    <nav class="navbar">
+      <div class="navdiv">
+        <div class="logo"><a href="#">CrizWeb</a></div>
+        <div class="burger" onclick="toggleMenu()">☰</div>
+        <ul id="nav-links">
+          <li><a href="#">MAIN PAGE</a></li>
+          <li><a href="#men_shoes">MEN SHOES</a></li>
+          <li><a href="#women_shoes">WOMEN SHOES</a></li>
+        </ul>
+      </div>
+    </nav>
+   
+    <div class="container">
+      <h2>Air Max Dn8</h2>
+      <img
+        class="my_cover"
+        src="../JavaScript21/shoes1/image.jpg"
+        alt="image"
+      />
+    </div>
+    <main>
+     
+      <section id="men_shoes" class="section scroll-target">
+        <h2>MEN SHOES</h2>
+        <div class="grid">
+          <div class="item">
+            <a href="NikeClassicBlack.html">
+            <img src="../JavaScript21/shoes1/NIKE+SB+FC+CLASSIC(7).jpg" alt="Shoes1" />
+            <h3>NIKE SB FC CLASSIC Black</h3> 
+            </a>
+          </div>  
+
+          <div class="item">
+            <a href="NikeClassicGray.html">
+            <img src="../JavaScript21/shoes1/NIKE+SB+FC+CLASSIC(13).jpg" alt="Shoes2" />
+            <h3>NIKE SB FC CLASSIC</h3>
+          </a>
+          </div>
+
+          <div class="item">
+            <a href="NikeSbForce.html">
+            <img src="../JavaScript21/shoes1/NIKE+SB+FORCE+58(14).jpg" alt="Shoes3" />
+            <h3>NIKE SB FORCE</h3>
+          </a>
+          </div>
+
+          <div class="item">
+            <a href="NikeSbZoom.html">
+            <img src="../JavaScript21/shoes1/NIKE+SB+ZOOM+JANOSKI+OG+.jpg" alt="Shoes4" />
+            <h3>NIKE SB ZOOM JANOSKI OG</h3>
+          </a>
+          </div>
+
+          <div class="item">
+            <a href="NikeCourtShot.html">
+            <img src="../JavaScript21/shoes5/COURT+SHOT.jpg" alt="Shoes5" />
+            <h3>NIKE COURT SHOT</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeJordanAirRev.html">
+            <img src="../JavaScript21/shoes5/JORDAN+AIR+REV.jpg" alt="Shoes6" />
+            <h3>JORDAN AIR REV</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeAirJordanZion.html">
+            <img
+              src="../JavaScript21/shoes5/JORDAN+ZION+4+PF.jpg"
+              alt="Shoes7"/>
+            <h3>JORDAN ZION 4 PF</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeJordan14.html">
+            <img
+              src="../JavaScript21/shoes5/AIR+JORDAN+14+G.jpg"
+              alt="Shoes8"
+            />
+            <h3>NIKE AIR JORDAN 14G</h3>
+          </a>
+          </div>
+          
+        </section>
+          <br>
+          <br>
+          <section id="women_shoes" class="section scroll-target">
+            <h2>WOMEN SHOES</h2>
+          </a>
+          <div class="grid">
+          <div class="item">
+            <a href="NikeJordanHeir.html">
+            <img src="../JavaScript21/Wshoe13/WMNS+JORDAN+HEIR+SERIES+PF.png" alt="Shoes13" />
+            <h3>JORDAN HEIR SERIES PF</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeAirJordan4Retro.html">
+            <img src="../JavaScript21/Wshoe13/WMNS+AIR+JORDAN+4+RETRO.png" alt="Shoes14" />
+            <h3>AIR JORDAN 4 RETRO</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeZoomVomero.html">
+            <img src="../JavaScript21/Wshoe13/W+NIKE+ZOOM+VOMERO+5.png" alt="Shoes15" />
+            <h3>NIKE ZOOM VOMERO 5</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeA'One.html">
+            <img src="../JavaScript21/Wshoe13/A'ONE+EP.png" alt="Shoes16" />
+            <h3>NIKE A'ONE EP</h3>
+          </div>
+          <div class="item">
+            <a href="NikeAirMaxSndr.html">
+            <img src="../JavaScript21/Wshoes17/W+NIKE+AIR+MAX+SNDR.png" alt="Shoes17" />
+            <h3>NIKE AIR MAX SNDR</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeAirMaxDn.html">
+            <img src="../JavaScript21/Wshoes17/W+AIR+MAX+DN.png" alt="Shoes18" />
+            <h3>NIKE AIR MAX DN</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeMotiva.html">
+            <img src="../JavaScript21/Wshoes17/WMNS+NIKE+MOTIVA+NBNW.png" alt="Shoes19" />
+            <h3>NIKE MOTIVA NBNW</h3>
+          </a>
+          </div>
+          <div class="item">
+            <a href="NikeDunkLow.html">
+            <img src="../JavaScript21/Wshoes17/W+NIKE+CORTEZ.png" alt="Shoes20" />
+            <h3>NIKE DUNK LOW</h3>
+          </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Zoomed Shoe" />
+    </div>
+
+    
+
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("nav-links").classList.toggle("active");
+      }
+      function openLightbox(imgElement) {
+  document.getElementById("lightbox-img").src = imgElement.src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".item img");
+  images.forEach(img => {
+    img.addEventListener("click", (e) => {
+      if (!img.closest('a')) {
+      openLightbox(img);
+      }
+    });
+});
+});
+
+
+    </script>
+    <br>
+    <br>
+    <footer id="contact">
+      <p>📍 Angeles City, Philippines | 📧 crizweb@gmail.com</p>
+      <p>&copy; 2025 CrizWeb. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

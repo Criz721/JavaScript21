@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nike Air Max Dn</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f8f8f8;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .info-box {
+        max-width: 400px;
+        background-color: #c5e8e8;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .gallery-container {
+        width: 300px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .gallery-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+
+      .gallery-controls {
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+        margin-top: 10px;
+      }
+
+      .arrow {
+        font-size: 21px;
+        cursor: pointer;
+        color: crimson;
+        user-select: none;
+      }
+
+      .controls,
+      .total,
+      .checkout-controls {
+        margin: 10px 0;
+      }
+
+      button,
+      .btn-return {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #checkoutBtn {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .btn-return {
+        background-color: blue;
+        color: white;
+        text-decoration: none;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .popup-content {
+        position: relative;
+        text-align: center;
+      }
+
+      .popup-controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+      }
+
+      .popup-arrow {
+        font-size: 48px;
+        color: rgb(188, 11, 11);
+        cursor: pointer;
+        padding: 0 20px;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 41px;
+        color: rgb(188, 11, 11);
+        cursor: pointer;
+      }
+
+      #popup-img {
+        max-width: 90vw;
+        max-height: 90vh;
+        border-radius: 10px;
+      }
+      .container p {
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="gallery-container">
+        <img
+          id="shoeImage"
+          class="gallery-image"
+          src=""
+          alt="Shoe Image"
+          onclick="openPopup(this)"
+        />
+        <div class="clickme">
+          <p>
+            <span onclick="openPopup()"> Click on Image for Large View</span>
+          </p>
+        </div>
+        <div class="gallery-controls">
+          <span class="arrow" onclick="prevImage()">❮ Previous</span>
+          <span class="arrow" onclick="nextImage()">Next ❯</span>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Nike Air Max Dn</h2>
+        <p>
+          Say hello to the next generation of Air technology. The Air Max Dn
+          features our Dynamic Air unit system of dual-pressure tubes, creating
+          a reactive sensation with every step. This results in a futuristic
+          design that's comfortable enough to wear from day to night. Go
+          ahead—Feel The Unreal.
+        </p>
+        <p>Price: ₱8,395 Each</p>
+
+        <div class="controls">
+          <button onclick="changeQuantity(-1)">-</button>
+          <span id="quantity">1</span>
+          <button onclick="changeQuantity(1)">+</button>
+        </div>
+        <div class="controls">
+          <label for="sizeSelect"><strong>Select Size:</strong></label>
+          <select id="sizeSelect">
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="7.5">7.5</option>
+            <option value="8">8</option>
+            <option value="8.5">8.5</option>
+            <option value="9">9</option>
+          </select>
+        </div>
+
+        <div class="total">Total: <span id="total">8,395</span></div>
+
+        <div class="checkout-controls">
+          <button id="checkoutBtn" onclick="goToCheckout()">Checkout</button>
+          <a href="index.html" class="btn-return">Return</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <div class="popup-controls">
+          <span class="popup-arrow" onclick="popupPrev()">❮</span>
+          <span class="popup-arrow" onclick="popupNext()">❯</span>
+        </div>
+        <img id="popup-img" />
+      </div>
+    </div>
+
+    <script>
+      const shoes = {
+        name: "Nike Air Max Dn",
+        images: [
+          "../JavaScript21/Wshoes17/W+AIR+MAX+DN.png",
+          "../JavaScript21/Wshoes17/W+AIR+MAX+DN (1).png",
+          "../JavaScript21/Wshoes17/W+AIR+MAX+DN (3).png",
+          "../JavaScript21/Wshoes17/W+AIR+MAX+DN (4).png",
+          "../JavaScript21/Wshoes17/W+AIR+MAX+DN (7).png",
+        ],
+      };
+
+      let currentImage = 0;
+      let quantity = 1;
+      const unitPrice = 8395;
+
+      const shoeImage = document.getElementById("shoeImage");
+      const popup = document.getElementById("popup");
+      const popupImg = document.getElementById("popup-img");
+      const quantitySpan = document.getElementById("quantity");
+      const totalSpan = document.getElementById("total");
+
+      function updateDisplay() {
+        shoeImage.src = shoes.images[currentImage];
+        popupImg.src = shoes.images[currentImage];
+      }
+
+      function prevImage() {
+        currentImage =
+          (currentImage - 1 + shoes.images.length) % shoes.images.length;
+        updateDisplay();
+      }
+
+      function nextImage() {
+        currentImage = (currentImage + 1) % shoes.images.length;
+        updateDisplay();
+      }
+
+      function openPopup() {
+        popup.style.display = "flex";
+        popupImg.src = shoes.images[currentImage];
+      }
+
+      function closePopup() {
+        popup.style.display = "none";
+      }
+
+      function popupPrev() {
+        prevImage();
+        popupImg.src = shoes.images[currentImage];
+      }
+
+      function popupNext() {
+        nextImage();
+        popupImg.src = shoes.images[currentImage];
+      }
+
+      function changeQuantity(amount) {
+        quantity = Math.max(1, quantity + amount);
+        quantitySpan.textContent = quantity;
+        totalSpan.textContent = (quantity * unitPrice).toLocaleString("en-PH", {
+          style: "currency",
+          currency: "PHP",
+        });
+      }
+      updateDisplay();
+
+      function goToCheckout() {
+        const productName = shoes.name;
+        const quantity = parseInt(
+          document.getElementById("quantity").textContent
+        );
+        const sizeSelect = document.getElementById("sizeSelect");
+        const size = sizeSelect ? sizeSelect.value : "N/A";
+        const total = quantity * unitPrice;
+
+        const url = `checkout.html?product=${encodeURIComponent(
+          productName
+        )}&qty=${quantity}&size=${size}&total=${total}`;
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
